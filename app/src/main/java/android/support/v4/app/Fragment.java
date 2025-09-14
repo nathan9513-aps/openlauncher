@@ -1,7 +1,7 @@
 package android.support.v4.app;
 
-import androidx.fragment.app.Fragment;
-
-public class Fragment extends Fragment {
-    // Compatibility shim: extends AndroidX Fragment so old imports compile.
+// Compatibility shim: extend AndroidX Fragment using fully-qualified name to avoid importing
+// the same simple name which can cause duplicate-definition errors during compilation.
+public class Fragment extends androidx.fragment.app.Fragment {
+    // shim
 }

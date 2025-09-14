@@ -1,7 +1,5 @@
 package android.support.v7.preference;
 
-import androidx.preference.PreferenceFragmentCompat;
-
-public class PreferenceFragmentCompat extends PreferenceFragmentCompat {
+public class PreferenceFragmentCompat extends androidx.preference.PreferenceFragmentCompat {
     // shim
 }
