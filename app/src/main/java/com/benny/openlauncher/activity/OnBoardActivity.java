@@ -18,6 +18,10 @@ import agency.tango.materialintroscreen.widgets.SwipeableViewPager;
 
 public class OnBoardActivity extends MaterialIntroActivity {
 
+    // Minimal stub: just to satisfy compile-time references
+    public void addSlide(SlideFragment fragment) {}
+    public void addSlide(CustomSlide fragment) {}
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

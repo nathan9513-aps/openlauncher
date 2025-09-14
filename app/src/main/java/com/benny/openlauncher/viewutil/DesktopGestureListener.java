@@ -59,6 +59,18 @@ public class DesktopGestureListener implements SimpleFingerGestures.OnFingerGest
         return _callback.onDrawerGesture(_desktop, Type.DoubleTap);
     }
 
+    @Override
+    public boolean onRelease() {
+        // Default: no-op, return false
+        return false;
+    }
+
+    @Override
+    public boolean onPress() {
+        // Default: no-op, return false
+        return false;
+    }
+
     public interface DesktopGestureCallback {
         boolean onDrawerGesture(Desktop desktop, Type event);
     }

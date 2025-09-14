@@ -69,8 +69,7 @@ public class LauncherAction {
                     ((DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE)).lockNow();
                 } catch (Exception e) {
                     DialogHelper.alertDialog(context, context.getString(R.string.device_admin_title), context.getString(R.string.device_admin_summary), context.getString(R.string.enable), new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        public void onClick(MaterialDialog dialog, MaterialDialog.DialogAction which) {
                             Tool.toast(context, context.getString(R.string.toast_device_admin_required));
                             Intent intent = new Intent();
                             intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.DeviceAdminSettings"));
