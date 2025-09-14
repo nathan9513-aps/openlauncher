@@ -65,25 +65,25 @@ public class SettingsAboutFragment extends GsPreferenceFragmentCompat<AppSetting
             } else if (keyInt == R.string.pref_key__more_info__settings) {
                 au.animateToActivity(SettingsActivity.class, false, 124);
                 return true;
-            } else if (key == R.string.pref_key__more_info__rate_app) {
+            } else if (keyInt == R.string.pref_key__more_info__rate_app) {
                 au.showGooglePlayEntryForThisApp();
                 return true;
-            } else if (key == R.string.pref_key__more_info__join_community) {
+            } else if (keyInt == R.string.pref_key__more_info__join_community) {
                 _cu.openWebpageInExternalBrowser(getString(R.string.app_community_url));
                 return true;
-            } else if (key == R.string.pref_key__more_info__bug_reports) {
+            } else if (keyInt == R.string.pref_key__more_info__bug_reports) {
                 _cu.openWebpageInExternalBrowser(getString(R.string.app_bug_report_url));
                 return true;
-            } else if (key == R.string.pref_key__more_info__translate) {
+            } else if (keyInt == R.string.pref_key__more_info__translate) {
                 _cu.openWebpageInExternalBrowser(getString(R.string.app_translate_url));
                 return true;
-            } else if (key == R.string.pref_key__more_info__project_contribution_info) {
+            } else if (keyInt == R.string.pref_key__more_info__project_contribution_info) {
                 _cu.openWebpageInExternalBrowser(getString(R.string.app_contribution_info_url));
                 return true;
-            } else if (key == R.string.pref_key__more_info__source_code) {
+            } else if (keyInt == R.string.pref_key__more_info__source_code) {
                 _cu.openWebpageInExternalBrowser(getString(R.string.app_source_code_url));
                 return true;
-            } else if (key == R.string.pref_key__more_info__project_license) {
+            } else if (keyInt == R.string.pref_key__more_info__project_license) {
                 try {
                     au.showDialogWithHtmlTextView(R.string.licenses, new SimpleMarkdownParser().parse(
                             getResources().openRawResource(R.raw.license),
@@ -92,7 +92,7 @@ public class SettingsAboutFragment extends GsPreferenceFragmentCompat<AppSetting
                     e.printStackTrace();
                 }
                 return true;
-            } else if (key == R.string.pref_key__more_info__open_source_licenses) {
+            } else if (keyInt == R.string.pref_key__more_info__open_source_licenses) {
                 try {
                     au.showDialogWithHtmlTextView(R.string.licenses, new SimpleMarkdownParser().parse(
                             getResources().openRawResource(R.raw.licenses),
@@ -101,7 +101,7 @@ public class SettingsAboutFragment extends GsPreferenceFragmentCompat<AppSetting
                     e.printStackTrace();
                 }
                 return true;
-            } else if (key == R.string.pref_key__more_info__contributors_public_info) {
+            } else if (keyInt == R.string.pref_key__more_info__contributors_public_info) {
                 try {
                     au.showDialogWithHtmlTextView(R.string.contributors, new SimpleMarkdownParser().parse(
                             getResources().openRawResource(R.raw.contributors),
@@ -110,7 +110,7 @@ public class SettingsAboutFragment extends GsPreferenceFragmentCompat<AppSetting
                     e.printStackTrace();
                 }
                 return true;
-            } else if (key == R.string.pref_key__more_info__copy_build_information) {
+            } else if (keyInt == R.string.pref_key__more_info__copy_build_information) {
                 new ShareUtil(getContext()).setClipboard(preference.getSummary());
                 SimpleMarkdownParser smp = new SimpleMarkdownParser();
                 try {
