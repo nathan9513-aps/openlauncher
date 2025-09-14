@@ -149,5 +149,13 @@ public class AppDrawerGrid extends FrameLayout {
                 return _apps.get(element).getLabel().charAt(0);
             else return '#';
         }
+
+        @Override
+        public String getName(int position) {
+            if (_apps != null && position < _apps.size() && _apps.get(position) != null) {
+                return _apps.get(position).getLabel();
+            }
+            return "#";
+        }
     }
 }

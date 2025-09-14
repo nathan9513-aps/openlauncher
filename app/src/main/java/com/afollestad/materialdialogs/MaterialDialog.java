@@ -5,7 +5,7 @@ import android.view.View;
 
 public class MaterialDialog {
     public interface SingleButtonCallback {
-        void onClick(MaterialDialog dialog, DialogAction which);
+    default void onClick(MaterialDialog dialog, DialogAction which) { }
     }
 
     public interface ListCallback {
