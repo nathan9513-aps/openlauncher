@@ -146,13 +146,8 @@ dependencies {
     // }
 
     // Tools
-    implementation "com.jakewharton:butterknife:${version_library_butterknife}"
-
-    // Processors
-    def anpros = ["com.jakewharton:butterknife-compiler:${version_library_butterknife}"]
-    for (anpro in anpros) {
-        annotationProcessor anpro
-    }
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 }
 
 repositories {
