@@ -5,7 +5,7 @@ import android.view.View;
 
 public class MaterialDialog {
     public interface SingleButtonCallback {
-        void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which);
+        void onClick(MaterialDialog dialog, DialogAction which);
     }
 
     public interface ListCallback {
@@ -13,7 +13,7 @@ public class MaterialDialog {
     }
 
     public interface InputCallback {
-        void onInput(@NonNull MaterialDialog dialog, CharSequence input);
+        void onInput(MaterialDialog dialog, CharSequence input);
     }
 
     public static class Builder {
