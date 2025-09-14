@@ -51,6 +51,12 @@ allprojects {
         task -> task.dependsOn copyRepoFiles
     }
 
+    // Fix for Gradle 8 implicit dependency validation: ensure tasks that map source set paths
+    // which can depend on generated/added resources also depend on copyRepoFiles.
+    tasks.matching { task -> task.name.matches('map.*SourceSetPaths') }.all {
+        task -> task.dependsOn copyRepoFiles
+    }
+
     tasks.matching {it instanceof Test}.all {
         testLogging.events "passed", "skipped", "failed", "standardOut", "standardError"
         testLogging.showStandardStreams = true
