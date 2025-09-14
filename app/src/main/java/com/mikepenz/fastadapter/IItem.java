@@ -1,5 +1,6 @@
 package com.mikepenz.fastadapter;
 
-public interface IItem<Item extends IItem<Item, ? extends Object>, VH> {
+/** Simplified IItem stub for compatibility */
+public interface IItem {
 	long getIdentifier();
 }

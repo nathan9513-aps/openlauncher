@@ -33,35 +33,29 @@ public class SettingsBehaviorFragment extends SettingsBaseFragment {
     public boolean onPreferenceTreeClick(Preference preference) {
         HomeActivity homeActivity = HomeActivity._launcher;
         int key = new ContextUtils(homeActivity).getResId(ContextUtils.ResType.STRING, preference.getKey());
-        switch (key) {
-            case R.string.pref_key__gesture_double_tap:
-            case R.string.pref_key__gesture_swipe_up:
-            case R.string.pref_key__gesture_swipe_down:
-            case R.string.pref_key__gesture_pinch_in:
-            case R.string.pref_key__gesture_pinch_out:
-                DialogHelper.selectGestureDialog(getActivity(), preference.getTitle().toString(), new MaterialDialog.ListCallback() {
-                    @Override
-                    public void onSelection(MaterialDialog dialog, View itemView, int position, CharSequence text) {
-                        if (position == 1) {
-                            DialogHelper.selectActionDialog(getActivity(), new MaterialDialog.ListCallback() {
-                                @Override
-                                public void onSelection(MaterialDialog dialog, View itemView, int position, CharSequence text) {
-                                    AppSettings.get().setString(key, LauncherAction.getActionItem(position)._action.toString());
-                                }
-                            });
-                        } else if (position == 2) {
-                            DialogHelper.selectAppDialog(getActivity(), new DialogHelper.OnAppSelectedListener() {
-                                @Override
-                                public void onAppSelected(App app) {
-                                    AppSettings.get().setString(key, Tool.getIntentAsString(Tool.getIntentFromApp(app)));
-                                }
-                            });
-                        } else {
-                            AppSettings.get().setString(key, "");
-                        }
+        if (key == R.string.pref_key__gesture_double_tap || key == R.string.pref_key__gesture_swipe_up || key == R.string.pref_key__gesture_swipe_down || key == R.string.pref_key__gesture_pinch_in || key == R.string.pref_key__gesture_pinch_out) {
+            DialogHelper.selectGestureDialog(getActivity(), preference.getTitle().toString(), new MaterialDialog.ListCallback() {
+                @Override
+                public void onSelection(MaterialDialog dialog, View itemView, int position, CharSequence text) {
+                    if (position == 1) {
+                        DialogHelper.selectActionDialog(getActivity(), new MaterialDialog.ListCallback() {
+                            @Override
+                            public void onSelection(MaterialDialog dialog, View itemView, int position, CharSequence text) {
+                                AppSettings.get().setString(key, LauncherAction.getActionItem(position)._action.toString());
+                            }
+                        });
+                    } else if (position == 2) {
+                        DialogHelper.selectAppDialog(getActivity(), new DialogHelper.OnAppSelectedListener() {
+                            @Override
+                            public void onAppSelected(App app) {
+                                AppSettings.get().setString(key, Tool.getIntentAsString(Tool.getIntentFromApp(app)));
+                            }
+                        });
+                    } else {
+                        AppSettings.get().setString(key, "");
                     }
-                });
-                break;
+                }
+            });
         }
         return false;
     }

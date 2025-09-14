@@ -29,15 +29,14 @@ public class SettingsMasterFragment extends SettingsBaseFragment {
         super.onPreferenceTreeClick(preference);
         HomeActivity homeActivity = HomeActivity._launcher;
         int key = new ContextUtils(homeActivity).getResId(ContextUtils.ResType.STRING, preference.getKey());
-        switch (key) {
-            case R.string.pref_key__cat_hide_apps:
-                Intent intent = new Intent(getActivity(), HideAppsActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-                return true;
-            case R.string.pref_key__cat_about:
-                startActivity(new Intent(getActivity(), MoreInfoActivity.class));
-                return true;
+        if (key == R.string.pref_key__cat_hide_apps) {
+            Intent intent = new Intent(getActivity(), HideAppsActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            return true;
+        } else if (key == R.string.pref_key__cat_about) {
+            startActivity(new Intent(getActivity(), MoreInfoActivity.class));
+            return true;
         }
 
         return false;

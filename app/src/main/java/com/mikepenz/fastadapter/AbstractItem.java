@@ -3,13 +3,13 @@ package com.mikepenz.fastadapter;
 import java.util.List;
 
 /** Minimal AbstractItem stub matching the app's expected API surface */
-public abstract class AbstractItem<Item extends IItem<Item, VH>, VH> implements IItem<Item, VH>, IClickable {
+public abstract class AbstractItem<T extends IItem, VH> implements IItem, IClickable {
 	private long identifier = -1;
 
 	public long getIdentifier() { return identifier; }
 
 	@SuppressWarnings("unchecked")
-	public Item withIdentifier(long id) { this.identifier = id; return (Item) this; }
+	public T withIdentifier(long id) { this.identifier = id; return (T) this; }
 
 	public void bindView(VH holder, List<Object> payloads) { }
 	public void unbindView(VH holder) { }
@@ -19,4 +19,9 @@ public abstract class AbstractItem<Item extends IItem<Item, VH>, VH> implements 
 
 	// marker interface for factories (keeps the API surface minimal)
 	public interface ViewHolderFactory<VH> { VH create(android.view.View v); }
+
+	// Methods commonly overridden by concrete items in the app
+	public abstract int getLayoutRes();
+	public abstract int getType();
+	public abstract VH getViewHolder(android.view.View v);
 }
