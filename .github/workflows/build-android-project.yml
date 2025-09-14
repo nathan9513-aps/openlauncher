@@ -48,12 +48,13 @@ jobs:
     - name: "Build: Project with make"
       run: make clean all
 
-    - name: "Ensure dist directory exists"
-      run: mkdir -p dist
-
-    - name: "Build: List dist files"
+    - name: "Build: List Gradle output files"
       if: always()
-      run: find dist -type f -maxdepth 2
+      run: |
+        echo "APK files:"
+        find app/build/outputs/apk/ -type f
+        echo "AAB files:"
+        find app/build/outputs/bundle/ -type f
 
     - name: "Artifacts: All"
       if: always()

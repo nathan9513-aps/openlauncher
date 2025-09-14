@@ -51,11 +51,10 @@ allprojects {
         task -> task.dependsOn copyRepoFiles
     }
 
-    tasks.matching {it instanceof Test}.all { // Enable unit test output, html+xml output
+    tasks.matching {it instanceof Test}.all {
         testLogging.events "passed", "skipped", "failed", "standardOut", "standardError"
         testLogging.showStandardStreams = true
-        reports.junitXml.enabled = true
-        reports.html.enabled = true
+        // Report configuration for Gradle 8.x+ should be done in test task block in each module if needed
     }
 }
 
