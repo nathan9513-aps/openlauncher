@@ -67,6 +67,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Minimal fallback for NNF_BaseTheme used by FilePickerTheme (from third-party lib).
+         This avoids resource linking errors when the external library is not provided.
+    -->
+    <style name="NNF_BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/Light.Background</item>
+        <item name="android:textColor">@color/Light.TextColor</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="FilePickerTheme" parent="NNF_BaseTheme">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
