@@ -7,10 +7,22 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file("keystore.jks")
-            storePassword "Dennisd-401!"
-            keyAlias "your_key_alias"
-            keyPassword "Dennisd-401!"
+            // Prefer module keystore, fall back to repository root keystore if present
+            def ks = file("keystore.jks")
+            if (!ks.exists()) {
+                def rootKs = rootProject.file('keystore.jks')
+                if (rootKs.exists()) {
+                    ks = rootKs
+                }
+            }
+            if (ks.exists()) {
+                storeFile ks
+                storePassword "Dennisd-401!"
+                keyAlias "key1"
+                keyPassword "Dennisd-401!"
+            } else {
+                // No keystore found; release builds will be unsigned in CI unless a keystore is provided.
+            }
         }
     }
     compileSdkVersion version_compileSdk
@@ -64,7 +76,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            // Apply signing config only if keystore was found and configured above
+            if (signingConfigs.release.storeFile != null && signingConfigs.release.storeFile.exists()) {
+                signingConfig signingConfigs.release
+            }
             // Abilita la generazione di AAB firmato
             // ./gradlew bundleRelease
         }

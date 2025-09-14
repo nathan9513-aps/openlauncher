@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Minimal attrs to satisfy references to the material scrollbar library -->
+    <attr name="msb_recyclerView" format="reference" />
+    <attr name="msb_lightOnTouch" format="boolean" />
+</resources>

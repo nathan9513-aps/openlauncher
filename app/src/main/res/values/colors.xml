@@ -24,4 +24,5 @@
 
     <color name="introText">#ff444444</color>
     <color name="introButton">#7d000000</color>
+    <color name="transparent">#00000000</color>
 </resources>
