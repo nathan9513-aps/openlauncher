@@ -7,5 +7,5 @@ import androidx.viewpager.widget.ViewPager;
 public class OverScrollViewPager extends androidx.viewpager.widget.ViewPager {
     public OverScrollViewPager(Context ctx) { super(ctx); }
     public OverScrollViewPager(Context ctx, AttributeSet attrs) { super(ctx, attrs); }
-    public ViewPager getOverScrollView() { return this; }
+    public SwipeableViewPager getOverScrollView() { return (SwipeableViewPager) this; }
 }

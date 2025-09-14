@@ -24,6 +24,7 @@ public class FastItemAdapter<T extends IItem> extends FastAdapter<T> {
 
     public void add(T item) { this.items.add(item); }
     public void addAll(List<T> items) { this.items.addAll(items); }
+    public void add(java.util.Collection<T> items) { this.items.addAll(items); }
     public void clear() { this.items.clear(); }
 
     public void notifyAdapterItemChanged(int pos) { /* no-op for stub */ }

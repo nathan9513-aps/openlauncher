@@ -232,14 +232,14 @@ public final class ItemOptionView extends FrameLayout {
         _overlayPopup.bringToFront();
     }
 
-    public final void showPopupMenuForItem(float x, float y, @NonNull List<AbstractPopupIconLabelItem> popupItem, com.mikepenz.fastadapter.listeners.OnClickListener<AbstractPopupIconLabelItem> listener) {
+    public final void showPopupMenuForItem(float x, float y, @NonNull java.util.List<AbstractPopupIconLabelItem> popupItem, com.mikepenz.fastadapter.listeners.OnClickListener<AbstractPopupIconLabelItem> listener) {
         if (!_overlayPopupShowing) {
             _overlayPopupShowing = true;
             _overlayPopup.setVisibility(View.VISIBLE);
             _overlayPopup.setTranslationX(x);
             _overlayPopup.setTranslationY(y);
             _overlayPopup.setAlpha(1.0f);
-            _overlayPopupAdapter.add(popupItem);
+            _overlayPopupAdapter.add((java.util.Collection<AbstractPopupIconLabelItem>) popupItem);
             _overlayPopupAdapter.withOnClickListener(listener);
         }
     }

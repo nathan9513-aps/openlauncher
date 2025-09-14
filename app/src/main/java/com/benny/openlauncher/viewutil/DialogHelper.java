@@ -36,7 +36,7 @@ public class DialogHelper {
                 .negativeText(android.R.string.cancel)
                 .input(null, defaultText, new MaterialDialog.InputCallback() {
                     @Override
-                    public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+                    public void onInput(MaterialDialog dialog, CharSequence input) {
                         listener.itemLabel(input.toString());
                     }
                 }).show();
@@ -63,16 +63,16 @@ public class DialogHelper {
     }
 
     public static void selectActionDialog(final Context context, MaterialDialog.ListCallback callback) {
-        MaterialDialog.Builder builder = new MaterialDialog.Builder(context);
-        builder.title(R.string.action)
+    MaterialDialog.Builder builder = new MaterialDialog.Builder(context);
+    builder.title(R.string.action)
                 .items(R.array.entries__gesture_action)
                 .itemsCallback(callback)
                 .show();
     }
 
     public static void selectDesktopActionDialog(final Context context, MaterialDialog.ListCallback callback) {
-        MaterialDialog.Builder builder = new MaterialDialog.Builder(context);
-        builder.title(R.string.action)
+    MaterialDialog.Builder builder = new MaterialDialog.Builder(context);
+    builder.title(R.string.action)
                 .items(R.array.entries__desktop_actions)
                 .itemsCallback(callback)
                 .show();
@@ -87,9 +87,9 @@ public class DialogHelper {
     }
 
     public static void selectAppDialog(final Context context, final OnAppSelectedListener onAppSelectedListener) {
-        MaterialDialog.Builder builder = new MaterialDialog.Builder(context);
-        FastItemAdapter<IconLabelItem> fastItemAdapter = new FastItemAdapter<>();
-        builder.title(R.string.select_app)
+    MaterialDialog.Builder builder = new MaterialDialog.Builder(context);
+    FastItemAdapter<IconLabelItem> fastItemAdapter = new FastItemAdapter<>();
+    builder.title(R.string.select_app)
                 .adapter(fastItemAdapter, new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false))
                 .negativeText(android.R.string.cancel);
 
