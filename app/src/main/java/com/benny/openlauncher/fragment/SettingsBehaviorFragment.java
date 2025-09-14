@@ -29,7 +29,6 @@ public class SettingsBehaviorFragment extends SettingsBaseFragment {
         addPreferencesFromResource(R.xml.preferences_behavior);
     }
 
-    @Override
     public boolean onPreferenceTreeClick(Preference preference) {
         HomeActivity homeActivity = HomeActivity._launcher;
         int key = new ContextUtils(homeActivity).getResId(ContextUtils.ResType.STRING, preference.getKey());
@@ -60,7 +59,6 @@ public class SettingsBehaviorFragment extends SettingsBaseFragment {
         return false;
     }
 
-    @Override
     public void updateSummaries() {
         List<Integer> gestures = new ArrayList<>(Arrays.asList(
                 R.string.pref_key__gesture_double_tap,

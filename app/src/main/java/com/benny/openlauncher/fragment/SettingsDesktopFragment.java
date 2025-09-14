@@ -16,7 +16,6 @@ public class SettingsDesktopFragment extends SettingsBaseFragment {
         addPreferencesFromResource(R.xml.preferences_desktop);
     }
 
-    @Override
     public boolean onPreferenceTreeClick(Preference preference) {
         HomeActivity homeActivity = HomeActivity._launcher;
         int key = new ContextUtils(homeActivity).getResId(ContextUtils.ResType.STRING, preference.getKey());

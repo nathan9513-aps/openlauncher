@@ -24,7 +24,6 @@ public class SettingsMasterFragment extends SettingsBaseFragment {
         addPreferencesFromResource(R.xml.preferences_master);
     }
 
-    @Override
     public boolean onPreferenceTreeClick(Preference preference) {
         super.onPreferenceTreeClick(preference);
         HomeActivity homeActivity = HomeActivity._launcher;

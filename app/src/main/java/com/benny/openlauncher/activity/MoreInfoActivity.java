@@ -1,8 +1,8 @@
 package com.benny.openlauncher.activity;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.widget.Toolbar;
 
 import com.benny.openlauncher.R;
 import com.benny.openlauncher.fragment.SettingsAboutFragment;
@@ -19,7 +19,7 @@ public class MoreInfoActivity extends ColorActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         SettingsAboutFragment settingsAboutFragment = SettingsAboutFragment.newInstance();
         transaction.replace(R.id.fragment_holder, settingsAboutFragment, SettingsAboutFragment.TAG).commit();
     }

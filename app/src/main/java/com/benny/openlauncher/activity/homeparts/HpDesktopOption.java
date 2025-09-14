@@ -40,7 +40,6 @@ public class HpDesktopOption implements DesktopOptionView.DesktopOptionViewListe
             return;
         }
         DialogHelper.alertDialog(_homeActivity, _homeActivity.getString(R.string.remove), "This page is not empty. Those items will also be removed.", new MaterialDialog.SingleButtonCallback() {
-            @Override
             public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                 _homeActivity.getDesktop().removeCurrentPage();
             }
