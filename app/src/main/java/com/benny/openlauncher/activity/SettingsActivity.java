@@ -24,11 +24,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class SettingsActivity extends ColorActivity implements SettingsBaseFragment.OnPreferenceStartFragmentCallback {
-    @BindView(R.id.toolbar)
     protected Toolbar toolbar;
 
     public void onCreate(Bundle b) {
@@ -37,10 +34,10 @@ public class SettingsActivity extends ColorActivity implements SettingsBaseFragm
         ContextUtils contextUtils = new ContextUtils(this);
         contextUtils.setAppLanguage(_appSettings.getLanguage());
 
-        setContentView(R.layout.activity_settings);
-        ButterKnife.bind(this);
+    setContentView(R.layout.activity_settings);
+    toolbar = findViewById(R.id.toolbar);
 
-        toolbar.setTitle(R.string.pref_title__settings);
+    toolbar.setTitle(R.string.pref_title__settings);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white));
         toolbar.setNavigationOnClickListener(v -> onBackPressed());

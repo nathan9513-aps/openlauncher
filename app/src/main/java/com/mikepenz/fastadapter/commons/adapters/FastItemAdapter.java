@@ -22,14 +22,20 @@ public class FastItemAdapter<T extends IItem> extends FastAdapter<T> {
     public void set(List<T> items) { setAdapterItems(items); }
     public int getAdapterItemCount() { return items.size(); }
 
+    public void add(T item) { this.items.add(item); }
+    public void addAll(List<T> items) { this.items.addAll(items); }
+    public void clear() { this.items.clear(); }
+
     public void notifyAdapterItemChanged(int pos) { /* no-op for stub */ }
+
+    public void notifyAdapterDataSetChanged() { /* no-op for stub */ }
 
     public void withOnClickListener(OnClickListener<T> listener) { /* no-op for stub */ }
 
     public ItemFilter getItemFilter() { return new ItemFilter(); }
 
-    public static class ItemFilter {
-        public <I> ItemFilter withFilterPredicate(Predicate<I> p) { return this; }
+    public static class ItemFilter<T> {
+        public ItemFilter<T> withFilterPredicate(com.mikepenz.fastadapter.IItemAdapter.Predicate<T> p) { return this; }
     }
 
     @Override
