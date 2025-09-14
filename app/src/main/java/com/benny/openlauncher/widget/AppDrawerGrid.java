@@ -143,8 +143,7 @@ public class AppDrawerGrid extends FrameLayout {
         public AppDrawerGridAdapter() {
         }
 
-        @Override
-        public Character getCharacterForElement(int element) {
+    public Character getCharacterForElement(int element) {
             if (_apps != null && element < _apps.size() && _apps.get(element) != null && _apps.get(element).getLabel().length() > 0)
                 return _apps.get(element).getLabel().charAt(0);
             else return '#';

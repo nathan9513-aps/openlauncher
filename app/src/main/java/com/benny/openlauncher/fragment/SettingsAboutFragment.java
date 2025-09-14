@@ -58,11 +58,11 @@ public class SettingsAboutFragment extends GsPreferenceFragmentCompat<AppSetting
     public Boolean onPreferenceClicked(Preference preference, String key, int keyResId) {
         ActivityUtils au = new ActivityUtils(getActivity());
         if (isAdded() && preference.hasKey()) {
-            int key = keyToStringResId(preference);
-            if (key == R.string.pref_key__more_info__app) {
+            int keyInt = keyToStringResId(preference);
+            if (keyInt == R.string.pref_key__more_info__app) {
                 _cu.openWebpageInExternalBrowser(getString(R.string.app_web_url));
                 return true;
-            } else if (key == R.string.pref_key__more_info__settings) {
+            } else if (keyInt == R.string.pref_key__more_info__settings) {
                 au.animateToActivity(SettingsActivity.class, false, 124);
                 return true;
             } else if (key == R.string.pref_key__more_info__rate_app) {
