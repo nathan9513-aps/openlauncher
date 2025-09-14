@@ -4,6 +4,14 @@ import android.animation.Animator;
 import android.view.View;
 
 public class ViewAnimationUtils {
+    public static Animator createCircularReveal(View v, int cx, int cy, float start, float end) { return null; }
+}
+package io.codetail.animation;
+
+import android.animation.Animator;
+import android.view.View;
+
+public class ViewAnimationUtils {
     public static Animator createCircularReveal(View view, int centerX, int centerY, float startRadius, float endRadius) {
         // Return a no-op animator to satisfy compile; real animation not needed in CI
         return new Animator() {
