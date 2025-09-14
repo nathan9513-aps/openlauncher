@@ -30,8 +30,11 @@ jobs:
           unzip -q tools.zip
           mv cmdline-tools latest
           export PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
-          yes | sdkmanager --sdk_root=$ANDROID_SDK_ROOT --licenses
-          sdkmanager --sdk_root=$ANDROID_SDK_ROOT "platform-tools" "platforms;android-33" "build-tools;33.0.2"
+          # Accept SDK licenses non-interactively. 'yes' can exit with EPIPE when sdkmanager
+          # terminates early which would make the step fail; ignore the exit status.
+          yes | sdkmanager --sdk_root=$ANDROID_SDK_ROOT --licenses || true
+          # Install required components; retry once on transient failures.
+          sdkmanager --sdk_root=$ANDROID_SDK_ROOT "platform-tools" "platforms;android-33" "build-tools;33.0.2" || sdkmanager --sdk_root=$ANDROID_SDK_ROOT "platform-tools" "platforms;android-33" "build-tools;33.0.2"
         shell: bash
 
       - name: Add Android SDK to PATH
