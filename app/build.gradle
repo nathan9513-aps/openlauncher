@@ -111,20 +111,24 @@ dependencies {
     implementation 'com.mikepenz:fastadapter:5.6.0'
     implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
-    implementation 'agency.tango.android:material-intro-screen:0.0.6'
+    // TODO: remote artifact on JitPack returned 401. Replace or host locally.
+    // implementation 'agency.tango.android:material-intro-screen:0.0.6'
     implementation 'cat.ereza:customactivityoncrash:2.3.0'
     implementation 'de.psdev.licensesdialog:licensesdialog:2.1.0'
-    implementation 'com.github.championswimmer:SimpleFingerGestures_Android_Library:1.2'
-    implementation 'com.nononsenseapps:filepicker:4.3.2'
+    // The following libraries are unavailable from configured repositories (jcenter/ jitpack may require auth or are deprecated).
+    // Commented out to allow CI builds to proceed. Replace with maintained alternatives or vendor the library.
+    // implementation 'com.github.championswimmer:SimpleFingerGestures_Android_Library:1.2'
+    // implementation 'com.nononsenseapps:filepicker:4.3.2'
     implementation 'org.slf4j:slf4j-android:1.7.36'
 
-    implementation ('com.github.ozodrukh:CircularReveal:2.0.4@aar') {
-        transitive = true
-    }
+    // CircularReveal and MaterialScrollBar pulled from GitHub/JitPack may be unavailable.
+    // implementation ('com.github.ozodrukh:CircularReveal:2.0.4@aar') {
+    //     transitive = true
+    // }
 
-    implementation('com.github.turing-tech:MaterialScrollBar:16.0.0') {
-        exclude group: 'com.android.support'
-    }
+    // implementation('com.github.turing-tech:MaterialScrollBar:16.0.0') {
+    //     exclude group: 'com.android.support'
+    // }
 
     // Tools
     implementation "com.jakewharton:butterknife:${version_library_butterknife}"
