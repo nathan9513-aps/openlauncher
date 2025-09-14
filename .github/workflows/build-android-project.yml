@@ -52,26 +52,40 @@ jobs:
       if: always()
       run: |
         echo "APK files:"
-        find app/build/outputs/apk/ -type f
+        if [ -d "app/build/outputs/apk" ]; then find app/build/outputs/apk/ -type f || true; else echo "(none)"; fi
         echo "AAB files:"
-        find app/build/outputs/bundle/ -type f
+        if [ -d "app/build/outputs/bundle" ]; then find app/build/outputs/bundle/ -type f || true; else echo "(none)"; fi
+
+    - name: "Check: outputs exist"
+      id: check_outputs
+      if: always()
+      run: |
+        HAS_APK=false
+        HAS_AAB=false
+        if [ -n "$(find app/build/outputs/apk -type f -name '*.apk' -print -quit 2>/dev/null)" ]; then HAS_APK=true; fi
+        if [ -n "$(find app/build/outputs/bundle -type f -name '*.aab' -print -quit 2>/dev/null)" ]; then HAS_AAB=true; fi
+        echo "has_apk=$HAS_APK" >> $GITHUB_OUTPUT
+        echo "has_aab=$HAS_AAB" >> $GITHUB_OUTPUT
+        if [ "$HAS_APK" = "true" ] || [ "$HAS_AAB" = "true" ]; then echo "has_any=true" >> $GITHUB_OUTPUT; else echo "has_any=false" >> $GITHUB_OUTPUT; fi
 
     - name: "Artifacts: All"
-      if: always()
+      if: always() && steps.check_outputs.outputs.has_any == 'true'
       uses: actions/upload-artifact@v4
       with:
         name: "all"
-        path: dist
+        path: app/build/outputs/**
         retention-days: 5
 
     - name: "Artifacts: Android APK"
+      if: steps.check_outputs.outputs.has_apk == 'true'
       uses: actions/upload-artifact@v4
       with:
         name: "android-apk"
-        path: app/build/outputs/apk/release/app-release.apk
+        path: app/build/outputs/apk/**
 
     - name: "Artifacts: Android AAB"
+      if: steps.check_outputs.outputs.has_aab == 'true'
       uses: actions/upload-artifact@v4
       with:
         name: "android-aab"
-        path: app/build/outputs/bundle/release/app-release.aab
+        path: app/build/outputs/bundle/**
