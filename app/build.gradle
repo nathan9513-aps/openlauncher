@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'com.benny.openlauncher'
     buildFeatures {
         buildConfig true
     }
