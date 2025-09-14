@@ -12,9 +12,9 @@ package net.gsantner.opoc.util;
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AlertDialog;
 
 import java.io.File;
 
@@ -29,22 +29,37 @@ public class PermissionChecker {
     }
 
     public boolean doIfExtStoragePermissionGranted(String... optionalToastMessageForKnowingWhyNeeded) {
-        if (ContextCompat.checkSelfPermission(_activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
+        String[] permissions;
+        int requestCode = CODE_PERMISSION_EXTERNAL_STORAGE;
+        if (android.os.Build.VERSION.SDK_INT >= 33) {
+            permissions = new String[]{
+                android.Manifest.permission.READ_MEDIA_IMAGES,
+                android.Manifest.permission.READ_MEDIA_VIDEO,
+                android.Manifest.permission.READ_MEDIA_AUDIO
+            };
+        } else {
+            permissions = new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        }
+        boolean allGranted = true;
+        for (String perm : permissions) {
+            if (ContextCompat.checkSelfPermission(_activity, perm) != PackageManager.PERMISSION_GRANTED) {
+                allGranted = false;
+                break;
+            }
+        }
+        if (!allGranted) {
             if (optionalToastMessageForKnowingWhyNeeded != null && optionalToastMessageForKnowingWhyNeeded.length > 0 && optionalToastMessageForKnowingWhyNeeded[0] != null) {
                 new AlertDialog.Builder(_activity)
                         .setMessage(optionalToastMessageForKnowingWhyNeeded[0])
                         .setCancelable(false)
                         .setNegativeButton(android.R.string.no, null)
                         .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                            if (android.os.Build.VERSION.SDK_INT >= 23) {
-                                ActivityCompat.requestPermissions(_activity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CODE_PERMISSION_EXTERNAL_STORAGE);
-                            }
+                            ActivityCompat.requestPermissions(_activity, permissions, requestCode);
                         })
                         .show();
                 return false;
             }
-            ActivityCompat.requestPermissions(_activity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CODE_PERMISSION_EXTERNAL_STORAGE);
+            ActivityCompat.requestPermissions(_activity, permissions, requestCode);
             return false;
         }
         return true;

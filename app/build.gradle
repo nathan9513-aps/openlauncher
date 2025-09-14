@@ -1,12 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file("keystore.jks")
+            storePassword "Dennisd-401!"
+            keyAlias "your_key_alias"
+            keyPassword "Dennisd-401!"
+        }
+    }
     compileSdkVersion version_compileSdk
     buildToolsVersion version_buildTools
 
     defaultConfig {
-        minSdkVersion version_minSdk
-        targetSdkVersion version_compileSdk
+    minSdkVersion version_minSdk
+    targetSdkVersion version_compileSdk
 
         flavorDimensions "versionCode"
         multiDexEnabled false
@@ -52,6 +60,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            // Abilita la generazione di AAB firmato
+            // ./gradlew bundleRelease
         }
         debug {
             applicationIdSuffix ".debug"

@@ -7,9 +7,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.Gravity;
 import android.view.View;
 
@@ -155,14 +155,31 @@ public class DialogHelper {
                     .withOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                            String[] permissions;
+                            if (android.os.Build.VERSION.SDK_INT >= 33) {
+                                permissions = new String[]{
+                                    Manifest.permission.READ_MEDIA_IMAGES,
+                                    Manifest.permission.READ_MEDIA_VIDEO,
+                                    Manifest.permission.READ_MEDIA_AUDIO
+                                };
+                            } else {
+                                permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
+                            }
+                            boolean allGranted = true;
+                            for (String perm : permissions) {
+                                if (ActivityCompat.checkSelfPermission(context, perm) != PackageManager.PERMISSION_GRANTED) {
+                                    allGranted = false;
+                                    break;
+                                }
+                            }
+                            if (allGranted) {
                                 appManager._recreateAfterGettingApps = true;
                                 AppSettings.get().setIconPack(resolveInfos.get(mI).activityInfo.packageName);
                                 appManager.getAllApps();
                                 dialog.dismiss();
                             } else {
                                 Tool.toast(context, (activity.getString(R.string.toast_icon_pack_error)));
-                                ActivityCompat.requestPermissions(HomeActivity.Companion.getLauncher(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, HomeActivity.REQUEST_PERMISSION_STORAGE);
+                                ActivityCompat.requestPermissions(HomeActivity.Companion.getLauncher(), permissions, HomeActivity.REQUEST_PERMISSION_STORAGE);
                             }
                         }
                     }));
