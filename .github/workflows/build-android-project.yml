@@ -48,6 +48,9 @@ jobs:
     - name: "Build: Project with make"
       run: make clean all
 
+    - name: "Ensure dist directory exists"
+      run: mkdir -p dist
+
     - name: "Build: List dist files"
       if: always()
       run: find dist -type f -maxdepth 2

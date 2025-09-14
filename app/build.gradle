@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
+    buildFeatures {
+        buildConfig true
+    }
     signingConfigs {
         release {
             storeFile file("keystore.jks")
